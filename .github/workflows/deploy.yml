@@ -22,16 +22,18 @@ jobs:
         with:
           fetch-depth: 0 # full history for the PDF freshness check
 
-      # The PDF is generated locally with `pnpm pdf` and committed, so the deployed file is
-      # exactly the one that was checked. Refuse to deploy if the content changed after it.
-      - name: Check the committed PDF is up to date
+      # The PDF and README image are generated locally with `pnpm pdf` and committed, so the published
+      # files are exactly the ones that were checked. Refuse to deploy if the content changed after them.
+      - name: Check the committed PDF and README image are up to date
         run: |
-          pdf=$(git log -1 --format=%ct -- 'public/*.pdf')
           src=$(git log -1 --format=%ct -- src scripts)
-          if [ -z "$pdf" ] || [ "$src" -gt "$pdf" ]; then
-            echo "::error::src/ or scripts/ changed after the PDF was last committed. Run 'pnpm pdf' and commit public/*.pdf."
-            exit 1
-          fi
+          for out in 'public/*.pdf' .github/resume.png; do
+            built=$(git log -1 --format=%ct -- "$out")
+            if [ -z "$built" ] || [ "$src" -gt "$built" ]; then
+              echo "::error::src/ or scripts/ changed after $out was last committed. Run 'pnpm pdf' and commit its output."
+              exit 1
+            fi
+          done
 
       - uses: actions/setup-node@v7
         with:

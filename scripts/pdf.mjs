@@ -9,8 +9,9 @@ const server = await preview({ root: '.', server: { port: 4329 }, logLevel: 'err
 const browser = await chromium.launch();
 
 try {
+  const url = `http://localhost:${server.port}${base}`;
   const page = await browser.newPage();
-  await page.goto(`http://localhost:${server.port}${base}`, { waitUntil: 'networkidle' });
+  await page.goto(url, { waitUntil: 'networkidle' });
 
   // Fail rather than silently export with a fallback font.
   const fontsOk = await page.evaluate(async () => {
@@ -51,6 +52,19 @@ try {
   const out = `public/${meta.file}`;
   await writeFile(out, await doc.save({ useObjectStreams: false }));
   console.log(`Saved ${out} (1 page)`);
+
+  // README preview: the same sheet as a 2x image, since GitHub can't render the page itself.
+  // A separate page keeps the device scale factor away from the PDF render.
+  const shot = await browser.newPage({ viewport: { width: 1100, height: 1100 }, deviceScaleFactor: 2 });
+  await shot.goto(url, { waitUntil: 'networkidle' });
+  await shot.evaluate(() => document.fonts.ready);
+  // Pin the sheet to (0,0) so the capture is exactly 8.5in x 11in with no fractional edge rows, and draw a
+  // hairline edge so the white sheet stays visible on GitHub's light theme (inset, so layout is untouched).
+  await shot.addStyleTag({
+    content: '.toolbar { display: none; } .page { margin: 0; box-shadow: inset 0 0 0 1px #d0d7de; }',
+  });
+  await shot.locator('.page').screenshot({ path: '.github/resume.png' });
+  console.log('Saved .github/resume.png');
 } finally {
   await browser.close();
   await server.stop();
