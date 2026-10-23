@@ -1,12 +1,17 @@
 export const resume = {
   name: 'Kazim Kayhan',
   headline: 'Frontend Software Engineer & Team Lead | React.js, Next.js, TypeScript',
+  // One line per row in the header.
   contact: [
-    { label: 'Kabul, Afghanistan' },
-    { label: '+93 730 634 343', href: 'tel:+93730634343' },
-    { label: 'kaziminbox@gmail.com', href: 'mailto:kaziminbox@gmail.com' },
-    { label: 'linkedin.com/in/kazimkayhan', href: 'https://www.linkedin.com/in/kazimkayhan' },
-    { label: 'github.com/kazim-kayhan', href: 'https://github.com/kazim-kayhan' },
+    [
+      { label: 'Kabul, Afghanistan (Open to Remote)' },
+      { label: '+93 730 634 343', href: 'tel:+93730634343' },
+      { label: 'kaziminbox@gmail.com', href: 'mailto:kaziminbox@gmail.com' },
+    ],
+    [
+      { label: 'linkedin.com/in/kazimkayhan', href: 'https://www.linkedin.com/in/kazimkayhan' },
+      { label: 'github.com/kazimkayhan', href: 'https://github.com/kazimkayhan' },
+    ],
   ],
   summary:
     'Frontend Software Engineer with 5+ years of experience building fast, scalable web applications with React.js, Next.js, and TypeScript. Currently leading frontend development for a German auto-parts retailer\'s e-commerce storefront, B2B partner portal, and internal dashboards, improving performance 30%, cutting load times 25%, and reducing production bugs 17%. Also experienced in web3/NFT products, UI/UX design, and full-stack Laravel development.',
@@ -42,9 +47,9 @@ export const resume = {
       location: 'British Columbia, Canada (Remote)',
       dates: 'Jan 2022 – Nov 2023',
       bullets: [
-        'Designed and built web3 and NFT product interfaces in React.js, Next.js, and TypeScript, integrating crypto-wallet connection and NFT minting flows with Ethers.js and Web3.js.',
-        'Led UX for the Tropyverse (tropyverse.com) virtual land marketplace, from research, wireframes, prototypes, and user testing to the production frontend.',
-        'Led UI design, minting interfaces, and developer handoff for The Mad Mouse Circus and Rich Cycle Rebels NFT launches.',
+        'Designed and built React.js, Next.js, and TypeScript interfaces for web3 and NFT products used by 3,000+ users, integrating crypto-wallet connection and NFT minting flows with Ethers.js and Web3.js.',
+        'Led UI design for The Mad Mouse Circus (minted out all 5,555 NFTs) and Rich Cycle Rebels NFT launches.',
+        'Led UX for the Tropyverse virtual land marketplace, from research and user testing to the production frontend.',
       ],
     },
     {

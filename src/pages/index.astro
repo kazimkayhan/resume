@@ -4,6 +4,14 @@ import '@fontsource/archivo/600.css';
 import '@fontsource/archivo/700.css';
 import '../styles/resume.css';
 import { resume as r } from '../data/resume';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const pageUrl = Astro.site ? new URL(base, Astro.site).href : undefined;
+// scripts/pdf.mjs reads this link's download name, so the file name lives in one place.
+const pdfFile = `${r.name.replace(/\s+/g, '-')}-Resume.pdf`;
+const favicon = `data:image/svg+xml,${encodeURIComponent(
+  "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='#c8290f'/><text x='16' y='21.5' font-family='Arial,sans-serif' font-size='14' font-weight='700' text-anchor='middle' fill='#fff'>KK</text></svg>",
+)}`;
 ---
 <!doctype html>
 <html lang="en">
@@ -14,20 +22,31 @@ import { resume as r } from '../data/resume';
     <meta name="description" content={r.summary} />
     <meta name="author" content={r.name} />
     <meta name="keywords" content={r.skills.map((s) => s.value).join(', ')} />
+    <link rel="icon" href={favicon} />
+    {pageUrl && <link rel="canonical" href={pageUrl} />}
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content={`${r.name} — ${r.headline}`} />
+    <meta property="og:description" content={r.summary} />
+    {pageUrl && <meta property="og:url" content={pageUrl} />}
   </head>
   <body>
+    <nav class="toolbar">
+      <a class="download" href={`${base}${pdfFile}`} download={pdfFile}>Download PDF</a>
+    </nav>
     <main class="page">
       <header class="head">
         <h1>{r.name}</h1>
         <p class="headline">{r.headline}</p>
-        <p class="contact">
-          {r.contact.map((c, i) => (
-            <>
-              {i > 0 && <span class="sep"> | </span>}
-              {c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
-            </>
-          ))}
-        </p>
+        {r.contact.map((row) => (
+          <p class="contact">
+            {row.map((c, i) => (
+              <>
+                {i > 0 && <span class="sep"> | </span>}
+                {c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+              </>
+            ))}
+          </p>
+        ))}
       </header>
 
       <section>
@@ -51,7 +70,7 @@ import { resume as r } from '../data/resume';
               <h3>{job.title}</h3>
               <span class="date">{job.dates}</span>
             </div>
-            <p class="org">{job.company}<span class="sep"> | </span>{job.location}</p>
+            <p class="org"><span>{job.company}</span><span class="sep"> | </span><span>{job.location}</span></p>
             <ul class="bullets">
               {job.bullets.map((b) => <li>{b}</li>)}
             </ul>
@@ -67,7 +86,7 @@ import { resume as r } from '../data/resume';
               <h3>{e.degree}</h3>
               <span class="date">{e.dates}</span>
             </div>
-            <p class="org">{e.school}<span class="sep"> | </span>{e.location}</p>
+            <p class="org"><span>{e.school}</span><span class="sep"> | </span><span>{e.location}</span></p>
           </div>
         ))}
       </section>
