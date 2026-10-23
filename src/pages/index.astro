@@ -1,0 +1,76 @@
+---
+import '@fontsource/archivo/400.css';
+import '@fontsource/archivo/600.css';
+import '@fontsource/archivo/700.css';
+import '../styles/resume.css';
+import { resume as r } from '../data/resume';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{r.name} — Resume</title>
+    <meta name="description" content={r.summary} />
+    <meta name="author" content={r.name} />
+    <meta name="keywords" content={r.skills.map((s) => s.value).join(', ')} />
+  </head>
+  <body>
+    <main class="page">
+      <header class="head">
+        <h1>{r.name}</h1>
+        <p class="headline">{r.headline}</p>
+        <p class="contact">
+          {r.contact.map((c, i) => (
+            <>
+              {i > 0 && <span class="sep"> | </span>}
+              {c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+            </>
+          ))}
+        </p>
+      </header>
+
+      <section>
+        <h2>Professional Summary</h2>
+        <p>{r.summary}</p>
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+        <ul class="rows">
+          {r.skills.map((s) => <li><strong>{s.label}:</strong> {s.value}</li>)}
+          <li><strong>Spoken Languages:</strong> {r.languages}</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Professional Experience</h2>
+        {r.experience.map((job) => (
+          <article class="entry">
+            <div class="line">
+              <h3>{job.title}</h3>
+              <span class="date">{job.dates}</span>
+            </div>
+            <p class="org">{job.company}<span class="sep"> | </span>{job.location}</p>
+            <ul class="bullets">
+              {job.bullets.map((b) => <li>{b}</li>)}
+            </ul>
+          </article>
+        ))}
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        {r.education.map((e) => (
+          <div class="entry">
+            <div class="line">
+              <h3>{e.degree}</h3>
+              <span class="date">{e.dates}</span>
+            </div>
+            <p class="org">{e.school}<span class="sep"> | </span>{e.location}</p>
+          </div>
+        ))}
+      </section>
+    </main>
+  </body>
+</html>

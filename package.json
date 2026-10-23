@@ -1,0 +1,20 @@
+{
+  "name": "kazim-kayhan-resume",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "pdf": "astro build && node scripts/pdf.mjs"
+  },
+  "dependencies": {
+    "@fontsource/archivo": "^5.3.0",
+    "astro": "^7.4.2"
+  },
+  "devDependencies": {
+    "pdf-lib": "^1.17.1",
+    "playwright": "^1.64.1"
+  }
+}

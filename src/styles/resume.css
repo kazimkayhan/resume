@@ -1,0 +1,77 @@
+/* Print geometry. The screen preview pads .page by the same amounts, so keep them in sync. */
+@page { size: letter; margin: 0.5in 0.55in; }
+
+:root {
+  --ink: #1f1d1c;
+  --muted: #45413f;
+  --faint: #a8a4a1;
+  --accent: #c8290f;
+}
+
+*, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: #e9e8e6; }
+body {
+  font-family: 'Archivo', Helvetica, Arial, sans-serif;
+  font-size: 9.5pt;
+  line-height: 12.5pt;
+  color: var(--ink);
+  font-kerning: normal;
+  /* Ligature glyphs (fi, fl) can extract as single odd characters and break ATS keyword matching. */
+  font-variant-ligatures: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page {
+  width: 8.5in;
+  min-height: 11in;
+  margin: 24px auto;
+  padding: 0.5in 0.55in;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 8px 24px rgba(0,0,0,.08);
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--accent); }
+strong { font-weight: 600; }
+p, li { text-wrap: pretty; }
+.sep { color: var(--faint); }
+
+.head { padding-bottom: 6pt; border-bottom: 1.5pt solid var(--ink); }
+h1 { font-size: 20pt; line-height: 22pt; font-weight: 700; text-transform: uppercase; }
+.headline { margin-top: 2pt; font-size: 11pt; line-height: 14pt; font-weight: 600; }
+.contact { margin-top: 2pt; font-size: 9pt; color: var(--muted); }
+
+section { margin-top: 8pt; }
+h2 {
+  margin-bottom: 4pt;
+  padding-bottom: 2pt;
+  border-bottom: 0.75pt solid var(--accent);
+  font-size: 9pt;
+  line-height: 11pt;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  break-after: avoid;
+}
+
+.rows { list-style: none; display: grid; gap: 1pt; }
+
+.entry + .entry { margin-top: 6pt; }
+.line { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; break-after: avoid; }
+h3 { font-size: 10pt; line-height: 13pt; font-weight: 600; }
+.date { flex: none; font-size: 9pt; font-weight: 600; font-variant-numeric: tabular-nums; }
+.org { font-size: 9pt; line-height: 12pt; color: var(--muted); break-after: avoid; }
+
+.bullets { list-style: none; margin-top: 2pt; display: grid; gap: 1pt; }
+.bullets li { padding-left: 10pt; break-inside: avoid; }
+/* In-flow hanging bullet: an absolutely positioned one is painted after the text, so parsers read it out of order. */
+.bullets li::before { content: '•'; display: inline-block; width: 10pt; margin-left: -10pt; padding-left: 1.5pt; }
+
+@media print {
+  html { background: none; }
+  .page { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; }
+}
