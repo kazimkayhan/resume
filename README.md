@@ -3,7 +3,7 @@
 
 **[View online](https://kazimkayhan.github.io/resume/)** · **[Download PDF](public/Kazim-Kayhan-Resume.pdf)**
 
-<a href="https://kazimkayhan.github.io/resume/"><img src=".github/resume.png" width="816" alt="Résumé of Kazim Kayhan, Frontend Software Engineer and Team Lead (React.js, Next.js, TypeScript)"></a>
+<a href="https://kazimkayhan.github.io/resume/"><img src=".github/resume.png" width="816" alt="Résumé of Kazim Kayhan, Senior Frontend Engineer and Team Lead (React.js, Next.js, TypeScript)"></a>
 
 </div>
 

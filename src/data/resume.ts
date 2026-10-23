@@ -1,27 +1,29 @@
 export const resume = {
   name: 'Kazim Kayhan',
-  headline: 'Frontend Software Engineer & Team Lead | React.js, Next.js, TypeScript',
+  headline: 'Senior Frontend Engineer & Team Lead | React.js, Next.js, TypeScript',
   // One line per row in the header.
   contact: [
     [
-      { label: 'Kabul, Afghanistan (Open to Remote)' },
+      { label: 'Kabul, Afghanistan' },
       { label: '+93 730 634 343', href: 'tel:+93730634343' },
       { label: 'kaziminbox@gmail.com', href: 'mailto:kaziminbox@gmail.com' },
-    ],
-    [
       { label: 'linkedin.com/in/kazimkayhan', href: 'https://www.linkedin.com/in/kazimkayhan' },
       { label: 'github.com/kazimkayhan', href: 'https://github.com/kazimkayhan' },
     ],
+    [
+      { label: 'Open to Remote (full-time or contract)' },
+      { label: 'UTC+4:30, overlaps EU business hours' },
+    ],
   ],
   summary:
-    'Frontend Software Engineer with 5+ years of experience building fast, scalable web applications with React.js, Next.js, and TypeScript. Currently leading frontend development for a German auto-parts retailer\'s e-commerce storefront, B2B partner portal, and internal dashboards, improving performance 30%, cutting load times 25%, and reducing production bugs 17%. Also experienced in web3/NFT products, UI/UX design, and full-stack Laravel development.',
+    'Senior Frontend Engineer with 5+ years of experience building fast, scalable web applications with React.js, Next.js, and TypeScript. Currently leading frontend development for a German auto-parts retailer\'s e-commerce storefront, B2B partner portal, and internal dashboards, improving performance 30%, cutting load times 25%, and reducing production bugs 17%. Also experienced in web3/NFT products, UI/UX design, and full-stack Laravel development.',
   skills: [
     { label: 'Programming Languages', value: 'TypeScript, JavaScript (ES6+), HTML5, CSS3, PHP, SQL' },
-    { label: 'Frontend', value: 'React.js, Next.js (App Router), TanStack Query (React Query), Zustand, React Hook Form, Zod, next-intl' },
-    { label: 'UI & Styling', value: 'Tailwind CSS, shadcn/ui, Radix UI, Material UI, design systems, responsive design, accessibility' },
+    { label: 'Frontend', value: 'React.js, Next.js (App Router), React Server Components, Server Actions, Partial Prerendering' },
+    { label: 'State & Forms', value: 'TanStack Query (React Query), Zustand, React Hook Form, Zod, next-intl (i18n)' },
+    { label: 'UI & Styling', value: 'Tailwind CSS, shadcn/ui, Radix UI, design systems, responsive design, accessibility' },
     { label: 'Backend, Web3 & Tools', value: 'Laravel, REST APIs, Auth.js, Ethers.js, Web3.js, Vitest, Playwright, Git, Biome, Vercel' },
-    { label: 'Practices', value: 'Frontend architecture, performance optimization, code splitting, lazy loading, i18n, code review, Agile/Scrum' },
-    { label: 'Design & Leadership', value: 'UI/UX design, wireframing, prototyping, user testing, mentoring, team leadership' },
+    { label: 'Practices', value: 'Frontend architecture, performance optimization, SEO, UI/UX design, wireframing, prototyping' },
   ],
   languages: 'English (full professional proficiency), Persian/Dari (native)',
   experience: [
@@ -31,12 +33,12 @@ export const resume = {
       location: 'Germany (Remote)',
       dates: 'Mar 2024 – Present',
       bullets: [
-        'Led the frontend team building a sales management dashboard in Next.js, TypeScript, and shadcn/ui, owning the Order, Sales, Inventory, Supplier, Shipment, and User modules.',
+        'Led a team of 7 developers building a sales management dashboard in Next.js, TypeScript, and shadcn/ui, owning the Order, Sales, Inventory, Supplier, Shipment, and User modules.',
         'Boosted dashboard performance 30% by optimizing React rendering and introducing a modular component architecture.',
         'Shipped a real-time cost management module that cut operational costs 20%.',
         'Cut page load times 25% and improved UX with code splitting, lazy loading, and Tailwind CSS.',
         'Reduced production bugs 17% by introducing error tracking and rollback strategies.',
-        'Built the autoteile-stark.de e-commerce storefront in Next.js (App Router) and TypeScript: product catalog, cart, checkout, and German/English localization with next-intl.',
+        'Built the autoteile-stark.de e-commerce storefront in Next.js (App Router) and TypeScript: SEO-friendly product catalog, cart, checkout, and German/English localization with next-intl.',
         'Built the internal back-office panel (orders, inventory, purchasing, finance, user roles) and a German/English/Polish B2B partner portal with TanStack Query, React Hook Form, and Zod, tested with Vitest and Playwright.',
         'Set code standards (TypeScript, Biome, Husky pre-commit hooks), ran code reviews, and mentored junior developers.',
       ],
